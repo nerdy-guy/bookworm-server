@@ -1,7 +1,7 @@
 import request from "supertest";
 import app from "../src/app.js";
 
-describe("Healthcheck", () => {
+describe("healthcheck", () => {
   it("returns 200 if the server is running", async () => {
     const res = await request(app).get("/api/healthcheck");
     expect(res.status).toBe(200);
