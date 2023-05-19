@@ -8,6 +8,7 @@ const register = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   try {
+    // check if the user exists
     const existingUser = await pool.query(
       "SELECT email from users WHERE email=$1",
       [email]
@@ -17,8 +18,10 @@ const register = async (req, res, next) => {
       throw createHttpError(409, "User already exists");
     }
 
+    // hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // create new user
     const newUser = await pool.query(
       "INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *",
       [name, email, hashedPassword]
@@ -58,6 +61,7 @@ const login = async (req, res, next) => {
       email,
     ]);
 
+    // create a jwt token
     const token = jwt.sign({ user_id: user.rows[0].user_id }, JWT_SECRET);
 
     res

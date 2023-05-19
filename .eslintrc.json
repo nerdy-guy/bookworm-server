@@ -24,7 +24,7 @@
     "n/prefer-promises/fs": "error",
     "n/no-unsupported-features/es-syntax": [
       "error",
-      { "ignores": ["modules"] }
+      { "ignores": ["modules", "optionalChaining"] }
     ],
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",

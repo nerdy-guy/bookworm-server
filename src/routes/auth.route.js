@@ -6,10 +6,9 @@ import loginSchema from "../utils/login.schema.js";
 
 const router = Router();
 
-router.post("/register", validate(registerSchema), register);
-
-router.post("/login", validate(loginSchema), login);
-
-router.post("/logout", logout);
+router
+  .post("/register", validate(registerSchema), register)
+  .post("/login", validate(loginSchema), login)
+  .post("/logout", logout);
 
 export default router;
