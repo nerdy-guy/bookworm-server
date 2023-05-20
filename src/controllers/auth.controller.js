@@ -82,8 +82,7 @@ const logout = (req, res, next) => {
         secure: true,
         sameSite: "none",
       })
-      .status(200)
-      .json("Successfully logged out");
+      .sendStatus(200);
   } catch (error) {
     next(error);
   }

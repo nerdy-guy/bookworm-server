@@ -5,7 +5,6 @@ CREATE TABLE books(
     author VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) DEFAULT NULL,
     pages INT,
-    start_date VARCHAR(255),
     end_date VARCHAR(255),
     notes TEXT,
     review TEXT,
