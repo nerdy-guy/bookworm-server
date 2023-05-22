@@ -4,7 +4,7 @@ CREATE TABLE books(
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) DEFAULT NULL,
-    pages INT,
+    pages INT DEFAULT 0,
     end_date VARCHAR(255),
     notes TEXT,
     review TEXT,

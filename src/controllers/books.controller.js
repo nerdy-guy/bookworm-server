@@ -16,7 +16,7 @@ const getBook = async (req, res, next) => {
 
 const getBooks = async (req, res, next) => {
   try {
-    const books = await pool.query("SELECT * FROM books");
+    const books = await pool.query("SELECT * FROM books ORDER BY created_at");
 
     res.status(200).json(books.rows);
   } catch (error) {
@@ -43,12 +43,17 @@ const addBook = async (req, res, next) => {
 
 const editBook = async (req, res, next) => {
   const { book_id } = req.params;
-  const { title, author, pages, end_date, notes, review, image_url } = req.body;
-  const user_id = req.user.user_id;
+  const { title, author, pages, end_date, notes, review } = req.body;
+  const image_url = req?.file?.filename;
+  const { user_id } = req.user;
+
+  console.log(req.body);
+
+  console.log(image_url);
 
   try {
     const editedBook = await pool.query(
-      "UPDATE books SET title=$1, author=$2, pages=$3, end_date=$5, notes=$6, review=$7, image_url=$8, updated_at=NOW() WHERE book_id=$9 AND user_id=$10 RETURNING *",
+      "UPDATE books SET title=$1, author=$2, pages=$3, end_date=$4, notes=$5, review=$6, image_url=$7, updated_at=NOW() WHERE book_id=$8 AND user_id=$9 RETURNING *",
       [
         title,
         author,
