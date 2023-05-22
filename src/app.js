@@ -13,7 +13,10 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://bookworm-2023.netlify.app" && "http://localhost:5173"
+  );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
@@ -22,7 +25,11 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("dev"));
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: "https://bookworm-2023.netlify.app" && "http://localhost:5173",
+  })
+);
 app.use(cookieParser());
 
 app.use("/api/healthcheck", healthcheckRoute);

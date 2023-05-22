@@ -67,6 +67,9 @@ const login = async (req, res, next) => {
     res
       .cookie("accessToken", token, {
         httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 1000 * 60 * 60, // 1 hour
       })
       .status(200)
       .json(user.rows[0]);
@@ -88,4 +91,14 @@ const logout = (req, res, next) => {
   }
 };
 
-export { register, login, logout };
+const getUser = (req, res, next) => {
+  try {
+    const { accessToken } = req.cookies;
+
+    res.status(200).json({ accessToken });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { register, login, logout, getUser };
