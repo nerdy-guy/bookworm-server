@@ -47,10 +47,6 @@ const editBook = async (req, res, next) => {
   const image_url = req?.file?.filename;
   const { user_id } = req.user;
 
-  console.log(req.body);
-
-  console.log(image_url);
-
   try {
     const editedBook = await pool.query(
       "UPDATE books SET title=$1, author=$2, pages=$3, end_date=$4, notes=$5, review=$6, image_url=$7, updated_at=NOW() WHERE book_id=$8 AND user_id=$9 RETURNING *",

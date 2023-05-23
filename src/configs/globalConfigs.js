@@ -11,6 +11,8 @@ const PG_PORT = process.env.PG_PORT;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+const NODE_ENV = process.env.NODE_ENV;
+
 export {
   PORT,
   PG_USER,
@@ -19,4 +21,5 @@ export {
   PG_HOST,
   PG_PORT,
   JWT_SECRET,
+  NODE_ENV,
 };
