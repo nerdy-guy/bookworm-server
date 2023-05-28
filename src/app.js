@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Origin",
 
     NODE_ENV === "production"
-      ? "https://bookworm-2023.netlify.app"
+      ? "https://bookworm-client.pages.dev"
       : "http://localhost:5173"
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/public", express.static(path.resolve(__dirname, "public")));
+app.use("/public", express.static(path.resolve(__dirname, "../public")));
 
 app.use(express.json());
 app.use(helmet());
@@ -38,7 +38,7 @@ app.use(
   cors({
     origin:
       NODE_ENV === "production"
-        ? "https://bookworm-2023.netlify.app"
+        ? "https://bookworm-client.pages.dev"
         : "http://localhost:5173",
   })
 );

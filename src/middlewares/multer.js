@@ -5,7 +5,7 @@ const __dirname = path.resolve();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.resolve(__dirname, "../server/public"));
+    cb(null, path.resolve(__dirname, "../public"));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + Math.round(Math.random() * 1e9);
