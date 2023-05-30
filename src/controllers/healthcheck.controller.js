@@ -9,17 +9,16 @@ const healthcheck = async (req, res) => {
     second: "2-digit",
   });
 
-  const healthcheck = {
-    uptime: process.uptime(),
-    responsetime: process.hrtime(),
-    message: "OK",
-    timestamp: dateFormatted,
-  };
   try {
-    res.send(healthcheck);
+    res.status(200).json({
+      status: 200,
+      message: "Ok",
+      uptime: process.uptime(),
+      responsetime: process.hrtime(),
+      timestamp: dateFormatted,
+    });
   } catch (error) {
-    healthcheck.message = error;
-    res.status(503).send();
+    res.status(503).json(error);
   }
 };
 

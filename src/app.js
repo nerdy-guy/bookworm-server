@@ -50,7 +50,7 @@ app.use("/api/auth", authRoute);
 
 app.use("/api/books", authorize, booksRoute);
 
-app.use(notFoundHandler);
+app.use("*", authorize, notFoundHandler);
 
 app.use(errorHandler);
 

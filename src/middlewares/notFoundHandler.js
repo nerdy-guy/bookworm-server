@@ -1,8 +1,9 @@
-import createHttpError from "http-errors";
-
 // handle not found routes
-const notFoundHandler = (req, res, next) => {
-  next(createHttpError(404, "This page doesn't exist"));
+const notFoundHandler = (req, res) => {
+  return res.status(401).json({
+    status: 401,
+    title: "Unauthorized",
+  });
 };
 
 export default notFoundHandler;

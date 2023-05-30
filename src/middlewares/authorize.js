@@ -5,7 +5,10 @@ const authorize = async (req, res, next) => {
   const { accessToken } = req.cookies;
 
   if (!accessToken) {
-    return res.json("Not valid token");
+    return res.status(401).json({
+      status: 401,
+      title: "Unauthorized",
+    });
   }
 
   try {
@@ -14,7 +17,10 @@ const authorize = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(401).json("Not valid token");
+    res.status(401).json({
+      status: 401,
+      title: "Unauthorized",
+    });
   }
 };
 
